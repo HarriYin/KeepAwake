@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>KeepAwake.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- KeepAwake.ico is used twice on purpose, and both read THIS single file:
+         1) ApplicationIcon  -> Win32 icon resource of the .exe (what Explorer shows)
+         2) EmbeddedResource -> tray icon, survives a single-file publish
+         Do not point one of them at another copy of the .ico, or the exe icon
+         and the tray icon will silently drift apart. -->
+    <EmbeddedResource Include="KeepAwake.ico" LogicalName="KeepAwake.AppIcon" />
+  </ItemGroup>
+
+</Project>
