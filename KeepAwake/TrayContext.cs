@@ -373,20 +373,20 @@ namespace KeepAwake
         private static void SetAutoStart(bool enable)
         {
             using var key = Registry.CurrentUser.OpenSubKey(RunKeyPath, true);
-            if (key == null)
-                return;
+                if (key == null)
+                    return;
 
-            if (enable)
-            {
-                string exe = Application.ExecutablePath;
-                key.SetValue(AppName, "\"" + exe + "\"");
+                if (enable)
+                {
+                    string exe = Application.ExecutablePath;
+                    key.SetValue(AppName, "\"" + exe + "\"");
+                }
+                else
+                {
+                    if (key.GetValue(AppName) != null)
+                        key.DeleteValue(AppName, false);
+                }
             }
-            else
-            {
-                if (key.GetValue(AppName) != null)
-                    key.DeleteValue(AppName, false);
-            }
-        }
 
         /// <summary>
         /// Re-adds the tray icon. Called when Explorer announces a new taskbar, which happens
